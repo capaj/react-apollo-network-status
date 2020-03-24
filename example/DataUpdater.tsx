@@ -1,6 +1,6 @@
 import gql from 'graphql-tag';
-import {useMutation} from '@apollo/react-hooks';
-import React, {FormEvent, useState} from 'react';
+import { useMutation } from '@apollo/react-hooks';
+import React, { FormEvent, useState } from 'react';
 
 const mutation = gql`
   mutation updateUser($id: ID!, $user: UserInput!) {
@@ -31,7 +31,7 @@ export default function DataUpdater() {
 
   function onSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    updateUser({variables: {id: '1', user: {name}}});
+    updateUser({ variables: { id: '1', user: { name } } });
   }
 
   function onNameInputChange(event: FormEvent<HTMLInputElement>) {

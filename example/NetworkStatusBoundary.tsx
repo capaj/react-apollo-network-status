@@ -1,12 +1,12 @@
-import React, {ReactNode, useState, SyntheticEvent} from 'react';
-import {ApolloNetworkStatusProvider} from '../src';
+import React, { ReactNode, useState, SyntheticEvent } from 'react';
+import { ApolloNetworkStatusProvider } from '../src';
 import NetworkStatusReporter from './NetworkStatusReporter';
 
 type Props = {
   children: ReactNode;
 };
 
-export default function NetworkStatusBoundary({children}: Props) {
+export default function NetworkStatusBoundary({ children }: Props) {
   const [enableBubbling, setEnableBubbling] = useState(false);
   const [optIn, setOptIn] = useState(false);
 
@@ -20,7 +20,7 @@ export default function NetworkStatusBoundary({children}: Props) {
 
   return (
     <ApolloNetworkStatusProvider enableBubbling={enableBubbling}>
-      <div style={{backgroundColor: '#2368841a'}}>
+      <div style={{ backgroundColor: '#2368841a' }}>
         <div
           style={{
             display: 'flex',
@@ -40,7 +40,7 @@ export default function NetworkStatusBoundary({children}: Props) {
               />
               Bubbling
             </label>
-            <label style={{marginLeft: 10}}>
+            <label style={{ marginLeft: 10 }}>
               <input
                 checked={optIn}
                 onChange={onOptInCheckboxChange}
@@ -50,7 +50,7 @@ export default function NetworkStatusBoundary({children}: Props) {
             </label>
           </div>
         </div>
-        <div style={{padding: '5px 20px'}}>{children}</div>
+        <div style={{ padding: '5px 20px' }}>{children}</div>
       </div>
     </ApolloNetworkStatusProvider>
   );

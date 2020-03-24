@@ -1,4 +1,4 @@
-import {ApolloProvider} from '@apollo/react-common';
+import { ApolloProvider } from '@apollo/react-common';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import createClient from '../src/__testUtils__/createClient';
@@ -9,7 +9,7 @@ import NetworkStatusBoundary from './NetworkStatusBoundary';
 const client = createClient();
 
 const element = (
-  <div style={{padding: 10}}>
+  <div style={{ padding: 10 }}>
     <ApolloProvider client={client}>
       <DataFetcher />
       <DataUpdater />

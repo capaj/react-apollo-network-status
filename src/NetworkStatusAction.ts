@@ -1,6 +1,6 @@
-import {Operation, ExecutionResult} from 'apollo-link';
-import {GraphQLError} from 'graphql';
-import {ServerError, ServerParseError} from 'apollo-link-http-common';
+import { Operation, ExecutionResult } from 'apollo-link';
+import { GraphQLError } from 'graphql';
+import { ServerError, ServerParseError } from 'apollo-link-http-common';
 import ActionTypes from './ActionTypes';
 
 export type NetworkStatusAction = {

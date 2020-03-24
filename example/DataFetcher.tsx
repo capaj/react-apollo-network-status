@@ -1,6 +1,6 @@
-import {useQuery} from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
-import React, {useState, useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 
 type Props = {
   isBroken?: boolean;
@@ -26,14 +26,14 @@ interface Variables {
   id: string;
 }
 
-export default function DataFetcher({isBroken}: Props) {
+export default function DataFetcher({ isBroken }: Props) {
   const [skip, setSkip] = useState(true);
-  const {data, loading, error, refetch} = useQuery<Data, Variables>(query, {
-    context: {useApolloNetworkStatus: true},
+  const { data, loading, error, refetch } = useQuery<Data, Variables>(query, {
+    context: { useApolloNetworkStatus: true },
     notifyOnNetworkStatusChange: true,
     fetchPolicy: 'network-only',
     skip,
-    variables: isBroken ? undefined : {id: '1'}
+    variables: isBroken ? undefined : { id: '1' }
   });
 
   function onFetchClick() {

@@ -1,7 +1,7 @@
-import {useContext, useReducer, useEffect} from 'react';
+import { useContext, useReducer, useEffect } from 'react';
 import ApolloNetworkStatusDispatcherContext from './ApolloNetworkStatusDispatcherContext';
 import Dispatcher from './Dispatcher';
-import {NetworkStatusAction} from './NetworkStatusAction';
+import { NetworkStatusAction } from './NetworkStatusAction';
 
 /**
  * Lower level hook which can be used for customizing the resulting state.

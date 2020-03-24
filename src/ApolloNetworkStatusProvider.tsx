@@ -1,5 +1,5 @@
-import {ApolloProvider, getApolloContext} from '@apollo/react-common';
-import React, {useMemo, ReactNode, useContext} from 'react';
+import { ApolloProvider, getApolloContext } from '@apollo/react-common';
+import React, { useMemo, ReactNode, useContext } from 'react';
 import Dispatcher from './Dispatcher';
 import ApolloNetworkStatusDispatcherContext from './ApolloNetworkStatusDispatcherContext';
 import augmentApolloClient from './augmentApolloClient';
@@ -9,8 +9,8 @@ type Props = {
   enableBubbling?: boolean;
 };
 
-function ApolloNetworkStatusProvider({children, enableBubbling}: Props) {
-  const {client} = useContext(getApolloContext());
+function ApolloNetworkStatusProvider({ children, enableBubbling }: Props) {
+  const { client } = useContext(getApolloContext());
   const dispatcher = useMemo(() => new Dispatcher(), []);
 
   if (!client) {
@@ -20,7 +20,7 @@ function ApolloNetworkStatusProvider({children, enableBubbling}: Props) {
   }
 
   const augmentedClient = useMemo(
-    () => augmentApolloClient({client, dispatcher, enableBubbling}),
+    () => augmentApolloClient({ client, dispatcher, enableBubbling }),
     [client, dispatcher, enableBubbling]
   );
 

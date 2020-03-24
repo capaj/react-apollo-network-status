@@ -17,20 +17,20 @@ const db = {
 const User = new GraphQLObjectType({
   name: 'User',
   fields: {
-    id: {type: GraphQLID},
-    name: {type: GraphQLString}
+    id: { type: GraphQLID },
+    name: { type: GraphQLString }
   }
 });
 
 const UserInput = new GraphQLInputObjectType({
   name: 'UserInput',
   fields: {
-    name: {type: GraphQLString}
+    name: { type: GraphQLString }
   }
 });
 
 function respond<T>(result: T): Promise<T> {
-  return new Promise(resolve => setTimeout(() => resolve(result), 300));
+  return new Promise((resolve) => setTimeout(() => resolve(result), 300));
 }
 
 export default new GraphQLSchema({
@@ -40,7 +40,7 @@ export default new GraphQLSchema({
       user: {
         type: User,
         args: {
-          id: {type: GraphQLNonNull(GraphQLID)}
+          id: { type: GraphQLNonNull(GraphQLID) }
         },
         resolve: () => respond(db.user)
       }
@@ -52,10 +52,10 @@ export default new GraphQLSchema({
       updateUser: {
         type: User,
         args: {
-          id: {type: GraphQLNonNull(GraphQLID)},
-          user: {type: UserInput}
+          id: { type: GraphQLNonNull(GraphQLID) },
+          user: { type: UserInput }
         },
-        resolve: (_, {user}) => respond(Object.assign(db.user, user))
+        resolve: (_, { user }) => respond(Object.assign(db.user, user))
       }
     }
   })

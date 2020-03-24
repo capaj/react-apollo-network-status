@@ -22,7 +22,7 @@ function cloneInstance<T>(original: T): T {
   // Apollo Client binds methods in the constructur via `.bind`. Therefore just
   // copying the methods to the new instance isn't enough, but these ones need to
   // be bound to the clone manually.
-  Object.keys(prototype).forEach(key => {
+  Object.keys(prototype).forEach((key) => {
     if (typeof prototype[key] === 'function') {
       clone[key] = prototype[key].bind(clone);
     }

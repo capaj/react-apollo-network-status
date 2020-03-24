@@ -1,9 +1,9 @@
-import {Operation} from 'apollo-link';
-import {OperationTypeNode, ExecutionResult, GraphQLError} from 'graphql';
-import {ServerError, ServerParseError} from 'apollo-link-http-common';
-import {useEffect, useRef, useMemo} from 'react';
+import { Operation } from 'apollo-link';
+import { OperationTypeNode, ExecutionResult, GraphQLError } from 'graphql';
+import { ServerError, ServerParseError } from 'apollo-link-http-common';
+import { useEffect, useRef, useMemo } from 'react';
 import ActionTypes from './ActionTypes';
-import {NetworkStatusAction} from './NetworkStatusAction';
+import { NetworkStatusAction } from './NetworkStatusAction';
 import useApolloNetworkStatusReducer from './useApolloNetworkStatusReducer';
 
 /**
@@ -26,14 +26,14 @@ export type NetworkStatus = {
 
 function isOperationType(operation: Operation, type: OperationTypeNode) {
   return operation.query.definitions.some(
-    definition =>
+    (definition) =>
       definition.kind === 'OperationDefinition' && definition.operation === type
   );
 }
 
 function pendingOperations(type: OperationTypeNode) {
   return function pendingOperationsByType(
-    state: number = 0,
+    state = 0,
     action: NetworkStatusAction
   ) {
     if (!isOperationType(action.payload.operation, type)) {
@@ -70,15 +70,15 @@ function latestOperationError(type: OperationTypeNode) {
         return undefined;
 
       case ActionTypes.ERROR: {
-        const {networkError, result, operation} = action.payload;
-        return {networkError, operation, response: result};
+        const { networkError, result, operation } = action.payload;
+        return { networkError, operation, response: result };
       }
 
       case ActionTypes.SUCCESS: {
-        const {result, operation} = action.payload;
+        const { result, operation } = action.payload;
 
         if (result && result.errors) {
-          return {graphQLErrors: result.errors, response: result, operation};
+          return { graphQLErrors: result.errors, response: result, operation };
         } else {
           return state;
         }
@@ -103,7 +103,7 @@ function reducer(
     return state;
   }
 
-  const updatedState = {...state};
+  const updatedState = { ...state };
 
   // Pending operations
   updatedState.numPendingQueries = pendingQueries(
@@ -124,7 +124,7 @@ function reducer(
 
   // The identity of the state should be kept if possible to avoid unnecessary re-renders.
   const haveValuesChanged = Object.keys(state).some(
-    key => (updatedState as any)[key] !== (state as any)[key]
+    (key) => (updatedState as any)[key] !== (state as any)[key]
   );
   return haveValuesChanged ? updatedState : state;
 }

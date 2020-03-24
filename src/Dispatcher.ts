@@ -1,4 +1,4 @@
-import {NetworkStatusAction} from './NetworkStatusAction';
+import { NetworkStatusAction } from './NetworkStatusAction';
 
 type Listener = (action: NetworkStatusAction) => void;
 
@@ -10,11 +10,11 @@ export default class Dispatcher {
   }
 
   removeListener(fn: Listener) {
-    this.listeners = this.listeners.filter(cur => cur !== fn);
+    this.listeners = this.listeners.filter((cur) => cur !== fn);
   }
 
   dispatch(action: NetworkStatusAction) {
-    this.listeners.forEach(currentListener => {
+    this.listeners.forEach((currentListener) => {
       currentListener(action);
     });
   }

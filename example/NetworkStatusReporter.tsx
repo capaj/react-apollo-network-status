@@ -1,12 +1,12 @@
-import {Operation} from 'apollo-link';
+import { Operation } from 'apollo-link';
 import React from 'react';
-import {useApolloNetworkStatus} from '../src';
+import { useApolloNetworkStatus } from '../src';
 
 type Props = {
   optIn?: boolean;
 };
 
-export default function NetworkStatusReporter({optIn}: Props) {
+export default function NetworkStatusReporter({ optIn }: Props) {
   const options = optIn
     ? {
         shouldHandleOperation: (operation: Operation) =>

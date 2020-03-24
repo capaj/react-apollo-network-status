@@ -11,10 +11,13 @@ This library helps with implementing global loading indicators like progress bar
 ```js
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {ApolloClient} from 'apollo-client';
-import {createHttpLink} from 'apollo-link-http';
-import {ApolloProvider} from '@apollo/react-common';
-import {ApolloNetworkStatusProvider, useApolloNetworkStatus} from 'react-apollo-network-status';
+import { ApolloClient } from 'apollo-client';
+import { createHttpLink } from 'apollo-link-http';
+import { ApolloProvider } from '@apollo/react-common';
+import {
+  ApolloNetworkStatusProvider,
+  useApolloNetworkStatus
+} from 'react-apollo-network-status';
 
 function GlobalLoadingIndicator() {
   const status = useApolloNetworkStatus();
@@ -52,7 +55,7 @@ The hook `useApolloNetworkStatus` provides an object with the following properti
 type NetworkStatus = {
   // The number of queries which are currently in flight.
   numPendingQueries: number;
-  
+
   // The number of mutations which are currently in flight.
   numPendingMutations: number;
 
@@ -83,7 +86,7 @@ The default configuration enables an **opt-out** behaviour per operation by sett
 
 ```js
 // Somewhere in a React component
-mutate({context: {useApolloNetworkStatus: false}});
+mutate({ context: { useApolloNetworkStatus: false } });
 ```
 
 You can configure an **opt-in** behaviour by specifying an operation whitelist like this:
@@ -96,7 +99,7 @@ useApolloNetworkStatus({
 });
 
 // Somewhere in a React component
-mutate({context: {useApolloNetworkStatus: true}});
+mutate({ context: { useApolloNetworkStatus: true } });
 ```
 
 ### Bubbling
@@ -114,7 +117,6 @@ You can nest multiple `<ApolloNetworkStatusProvider />` inside each other. For e
       <AnotherComponentWithAQuery />
       <LoadingIndicator />
     </ApolloNetworkStatusProvider>
-
   </ApolloNetworkStatusProvider>
 </ApolloProvider>
 ```
@@ -132,7 +134,6 @@ In this example `<LoadingIndicator />` calls `useApolloNetworkStatus`. By defaul
       <AnotherComponentWithAQuery />
       <LoadingIndicator />
     </ApolloNetworkStatusProvider>
-
   </ApolloNetworkStatusProvider>
 </ApolloProvider>
 ```
@@ -142,7 +143,10 @@ In this example `<LoadingIndicator />` calls `useApolloNetworkStatus`. By defaul
 You can fully control how operations are mapped to state by providing a custom reducer to a separate low-level hook.
 
 ```tsx
-import {ActionTypes, useApolloNetworkStatusReducer} from 'react-apollo-network-status';
+import {
+  ActionTypes,
+  useApolloNetworkStatusReducer
+} from 'react-apollo-network-status';
 
 const initialState = 0;
 
@@ -159,7 +163,10 @@ function reducer(state: number, action: NetworkStatusAction) {
 }
 
 function GlobalLoadingIndicator() {
-  const numPendingQueries = useApolloNetworkStatusReducer(reducer, initialState);
+  const numPendingQueries = useApolloNetworkStatusReducer(
+    reducer,
+    initialState
+  );
   return <p>Pending queries: {numPendingQueries}</p>;
 }
 ```
